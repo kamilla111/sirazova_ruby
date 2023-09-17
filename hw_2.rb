@@ -73,7 +73,7 @@ if __FILE__ == $PROGRAM_NAME
   Human.knowledge_base
 
   bush = RaspberryBush.new(7)
-  human = Human.new("Petya", bush)
+  human = Human.new("Petya", ras)
   
   human.work!
 
