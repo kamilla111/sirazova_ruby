@@ -1,7 +1,7 @@
 class Raspberry
   attr_reader :state
 
-  @@states = ["Отсутствует", "Цветение", "Зеленая", "Красная"]
+  @@states = ["absent", "Flowering", "Green", "Red"]
 
   def initialize(index)
     @index = index
@@ -25,7 +25,7 @@ end
 
 class RaspberryBush
   def initialize(countRaspberries)
-    @raspberries = Array.new(countRaspberries){Raspberry.new}
+    @raspberries = Array.new(countRaspberries){Raspberry.new 0}
   end
 
   def grow_all! 
@@ -46,9 +46,9 @@ end
 class Human
   attr_reader :name
 
-  def initialize(name)
+  def initialize(name, plant)
     @name = name
-    @plant = nil
+    @plant = plant
   end
 
   def work!
@@ -58,14 +58,14 @@ class Human
   def harvest
     if @plant.ripe_all?
       @plant.give_away_all!
-      p "Урожай собран!"
+      p "The harvest is harvested!"
     else
-      p "Урожай еще не созрел."
+      p "Early(("
     end
   end
 
   def self.knowledge_base
-    p " Чтобы малина перешла на следующую стадию, необходимо поливать растение. Малина созревает, когда достигает последней стадии. Спелые ягоды можно собирать."
+    p "raspberries should be planted in April"
   end
 end
 
@@ -73,7 +73,7 @@ if __FILE__ == $PROGRAM_NAME
   Human.knowledge_base
 
   bush = RaspberryBush.new(7)
-  human = Human.new("Petya")
+  human = Human.new("Petya", bush)
   
   human.work!
 
